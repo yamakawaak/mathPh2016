@@ -1,0 +1,449 @@
+\documentclass[11pt]{jsarticle}
+\setlength{\textheight}{43\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\textheight}{21\footskip}
+\setlength{\textwidth}{42zw}
+\setlength{\hoffset}{+1zw}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{fancyhdr} %ヘッダー
+\usepackage{comment} 
+\pagestyle{fancy}
+\rhead{物理数学演習 \ 2016/05/19}
+\renewcommand{\headrulewidth}{0pt} %ヘッダーラインを打ち出さない
+
+\def \bun#1#2{\left(\frac{#1}{#2}\right)} %括弧付き分数マクロ
+\def \vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+\def \rot{\nabla \times} %ローテーション
+\def \div{\nabla \cdot} %ダイバージェンス
+\def \intt{\int\!\!\!\int} %2重積分
+\def \intf#1#2#3#4{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}} %2重積分範囲付き
+\def \inttt{\int\!\!\!\int\!\!\!\int} %3重積分
+\def \intff#1#2#3#4#5#6{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}\!\!\!\int_{#5}^{#6}} %3重積分範囲付き
+
+\usepackage{graphicx}
+\usepackage{wrapfig}%テキスト回り込み
+
+\def \Vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+
+\begin{document}
+\begin{center}
+{\Large
+演習問題その13  解答例}
+\end{center}
+%%%%
+\begin{enumerate}
+
+
+\item 次の関数をフーリエ変換せよ.
+\begin{enumerate}
+\item[(1)] $\delta (x)$\\
+(解答例)
+\begin{eqnarray*}
+\mathcal{F}[\delta(x)]&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \delta(x) e^{-ik x}dx\\
+&=&\frac{1}{\sqrt{2\pi}}e^{-ik\cdot 0}=\frac{1}{\sqrt{2\pi}}
+\end{eqnarray*}
+
+\item[(2)] $\sin{k_0}x\qquad (ただしk_0は定数)$\\
+(解答例)\\
+ $\sin k_{0}x=(e^{ik_{0}x}-e^{-ik_{0}x})/2i$であるから
+ \begin{eqnarray*}
+ \mathcal{F}[\sin k_{0}x]&=&\mathcal{F} \left[ \frac{e^{ik_{0}x}-e^{-ik_{0}x}}{2i} \right]\\
+ &=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \frac{e^{ik_{0}x}-e^{-ik_{0}x}}{2i} e^{-ik x}dx\\
+ &=&\frac{1}{\sqrt{2\pi}}\frac{1}{2i}  \left\{  \int_{-\infty}^{\infty}1 \cdot e^{-i(k-k_{0})x}dx - \int_{-\infty}^{\infty}1 \cdot e^{-i(k+k_{0})x}dx\right\}\\
+ &=&\frac{1}{\sqrt{2\pi}}\frac{1}{2i}\left( 2\pi\delta(k-k_{0})- 2\pi\delta(k+k_{0})\right)\\
+ &=&\frac{i\pi}{\sqrt{2\pi}} (\delta(k+k_{0})-\delta(k-k_{0}))
+ \end{eqnarray*}
+
+\item[(3)] $\theta (x)$\\
+ただし、$\theta (x)$はヘビサイド関数；\begin{equation*}
+ \theta (x) =
+   \begin{cases}
+    0 \ (x<0)\\
+    1 \ (x>0).
+  \end{cases}
+\end{equation*}
+(解答例)
+\begin{eqnarray*}
+\mathcal{F}[\theta(x)]
+&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \theta(x) e^{-ik x}dx\\
+&=&\frac{1}{\sqrt{2\pi}}\int_{0}^{\infty} e^{-ik x}dx = \frac{1}{\sqrt{2\pi}}\left[ \frac{1}{-ik}e^{-ikx} \right]_0^{\infty}\\
+&=& \frac{1}{ik\sqrt{2\pi}}
+\end{eqnarray*}
+
+
+\end{enumerate}
+
+\newpage
+\item (応用問題)誘電体は電場をかけると分極する．誘電体に加える電場を$E(t)$とすると，分極ベクトルの大きさ$P(t)$は一般に
+\begin{equation*}
+P(t)=\int_{-\infty}^{\infty} \chi (t-t') E(t')dt'
+\end{equation*}
+とかける．ただし，$\chi$は帯電率と呼ばれ，次のようにかける．
+\begin{equation*}
+\chi(t)=
+  \begin{cases}
+    \chi_{0}e^{-t/\tau_{0}} \ (t \geq 0)\\
+    0 \ (t<0)
+  \end{cases}
+\end{equation*}
+ここで，$\chi_{0}, \tau$は定数である．電場$E(t)$を以下の形で加えたとき，$P(t)$がどのような振る舞いをするかフーリエ変換を用いて求める．
+\begin{equation*}
+E(t)=
+  \begin{cases}
+    E_{0}e^{-\epsilon t} \ (t \geq 0, \epsilon \rightarrow 0_{+})\\
+    0 \ (t<0)
+  \end{cases}
+\end{equation*}
+ここで，$\epsilon \rightarrow 0_{+}$なので，$t=0$でほとんどヘビサイド関数的に電場を加えたことに相当する($E(t)=E_{0} \theta (t)$)．以下の問いに答えよ.\\
+
+\begin{enumerate}
+\item[(1)] $\chi (t),E(t)のフーリエ変換\mathcal{F}[\chi (t)],\mathcal{F}[E(t)] を求めよ.~また\mathcal{F}[e^{-t/\tau}],\mathcal{F}[\theta (t)]を求めよ.$\\
+(解答例)
+\begin{eqnarray*}
+\mathcal{F}[\chi(t)]&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \chi(t)e^{-ik t}dt=\frac{\chi_0}{\sqrt{2\pi}}\int_{0}^{\infty}e^{-t/\tau}e^{-ik t}dt\\
+&=&\frac{\chi_0}{\sqrt{2\pi}}\int_{0}^{\infty}e^{-\left( \frac{1}{\tau}+ik\right)t}dt=\frac{1}{\sqrt{2\pi}}\frac{\chi_{0}}{ \frac{1}{\tau}+ik}
+\end{eqnarray*}
+これは、$1/\sqrt{2\pi}(1/\tau+ik)$が$e^{-t/\tau}$のフーリエ変換$\mathcal{F}[e^{-t/\tau}]=1/\sqrt{2\pi}(1/\tau+ik)$であることを示している。また、
+\begin{eqnarray*}
+\mathcal{F}[E(t)]&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} E(t)e^{-ik t}dt=\frac{E_0}{\sqrt{2\pi}}\int_{0}^{\infty}e^{-\epsilon t}e^{-ikt}dt\\
+&=&\frac{E_0}{\sqrt{2\pi}}\int_{0}^{\infty} e^{-(\epsilon+ik)t}dt=\frac{1}{\sqrt{2\pi}}\frac{E_{0}}{\epsilon+ik} \rightarrow \frac{1}{\sqrt{2\pi}}\frac{E_{0}}{ik} \ (\epsilon \rightarrow 0_{+})
+\end{eqnarray*}
+これは、$1/ik\sqrt{2\pi}$が階段関数$\theta(t)$のフーリエ変換$\mathcal{F}[\theta(t)]=1/ik\sqrt{2\pi}$であることを示している。
+
+\newpage
+\item[(2)] フーリエ変換の合成積(たたみ込み積分)によって、$P(t)$のフーリエ変換は以下のようになる;
+\begin{equation*}
+\mathcal{F}[P(t)]=\sqrt{2\pi}\mathcal{F}[\chi (t)]\mathcal{F}[E(t)].
+\end{equation*}
+$P(t)$求めよ.\\
+(ヒント：部分分数分解によって$\mathcal{F}[e^{-t/\tau}],\mathcal{F}[\theta (t)]$に分解する)\\
+(解答例)
+\begin{eqnarray*}
+\mathcal{F}[P(t)]&=&\frac{1}{\sqrt{2\pi}}\frac{\chi_{0}E_{0}}{i\omega \left( \frac{1}{\tau}+i\omega \right)}=\frac{\chi_{0}E_{0}\tau}{\sqrt{2\pi}}\left( \frac{1}{i\omega} - \frac{1}{i\omega+\frac{1}{\tau}} \right)\\
+&=&\chi_{0}E_{0}\tau \left\{ \mathcal{F}[\theta(t)]-\mathcal{F}[e^{-t/\tau}] \right\}\\
+&=&\mathcal{F}\left[ \chi_{0}E_{0}\tau \left( \theta(t) -e^{-t/\tau} \right) \right]
+\end{eqnarray*}
+したがって
+\begin{eqnarray*}
+P(t)=\chi_{0}E_{0}\tau \left( \theta(t) -e^{-t/\tau} \right)
+\end{eqnarray*}
+
+
+\end{enumerate}
+
+\newpage
+\item 2変数関数$u(x,y)$について、以下の偏微分方程式を解け.\\
+\begin{description}
+\item[(1)] $\displaystyle{\frac{{\partial}^2 u}{\partial x \partial y}=x+y}$\\
+\\
+（解答例）\\
+まず$y$で積分する．$x$のみに依存する任意関数$f(x)$を用いて，
+\begin{eqnarray*}
+\frac{\partial^2 u}{\partial x \partial y} = x+y &\Leftrightarrow&
+\frac{\partial u}{\partial x } = xy+\frac{1}{2}y^2 + f(x) 
+\end{eqnarray*}
+さらに$x$で積分する．$f(x)$を$x$で積分しても$x$の関数であることに変わりはないので，
+$\mathrm{d}g(x)/\mathrm{d}x=f(x)$となる$g(x)$を用いて，
+\begin{eqnarray*}
+u(x,y) = \frac{1}{2}xy(x +y) + g(x) + h(y).
+\end{eqnarray*}
+ここで$g(x)$は$x$のみに，$h(y)$は$y$のみに依存する任意関数．\\
+
+\item[(2)] $\displaystyle{\frac{{\partial}^2 u}{\partial x^2}=x+y}$\\
+\\
+（解答例）
+\begin{eqnarray*}
+\frac{\partial^2 u}{\partial x^2} = x+y &\Leftrightarrow&
+\frac{\partial u}{\partial x } = \frac{1}{2}x^2 + xy + f(y) \\
+&\Leftrightarrow& u(x,y) =
+\frac{1}{6}x^3 + \frac{1}{2} x^2 y + f(y)x + g(y).
+\end{eqnarray*}
+ただし$f(y),\ g(y)$は$y$のみに依存する関数．
+\end{description}
+
+\newpage
+\item 以下の問いに答えよ.\\
+\begin{description}
+\item[(1)] $\displaystyle{\frac{\partial  u}{\partial x}=xy}$を満たし、$x=0$で$u=e^{-y}$に従って指数関数的に減少する解を求めよ.\\
+(解答例)\\
+\begin{eqnarray*}
+\frac{\partial u}{\partial x}&=&xy\\
+\Leftrightarrow u &=& \frac{1}{2}x^2y+f(y)
+\end{eqnarray*}
+$x=0$における条件式を代入すると、
+\begin{eqnarray*}
+e^{-y} &=& f(y)\\
+u &=& \frac{1}{2}x^2y+e^{-y}.
+\end{eqnarray*}
+
+\item[(2)] $u(x,y)$についての偏微分方程式
+$\displaystyle{\frac{\partial^2u}{\partial x \partial y}=10x^4}$ を解け．\\
+ただし $u(x,0)=x^2, \ u(0,y)=e^y-1$ とする．\\
+(解答例)\\
+$x,y$で順に積分していくと，
+\begin{eqnarray*}
+\frac{\partial u}{\partial y} &=& 2x^5+f(y). \\
+u &=& 2x^5y+g(y)+h(x). \;\;\;\; \hspace{0.5cm} \left(f=\frac{dg}{dy}\right)
+\end{eqnarray*}
+条件式より，
+\begin{eqnarray}
+u(x,0)=g(0)+h(x)=x^2 \;\;\;\; \Rightarrow \;\;\;\; h(x) &=& x^2-g(0).
+\label1 \\
+u(0,y)=g(y)+h(0)=e^y-1 \;\;\;\; \Rightarrow \;\;\;\; g(y) &=& e^y-1-h(0) =
+e^y+g(0)-1. \;\;\;\; (\because (1)式) \nonumber
+\end{eqnarray}
+\begin{eqnarray*}
+\therefore \ g(y)+h(x) = x^2+e^y-1. 
+\end{eqnarray*}
+よって $\;\;\; u(x,y)=2x^5y+x^2+e^y-1$.
+\end{description}
+
+\newpage
+\item
+$\displaystyle{y\frac{\partial^2u}{\partial y^2}=
+\frac{\partial u}{\partial y}}$を満たす$u(x,y)$のうち,
+$y=\pm1$で$u(x,y)=0,\ y=0$で$u=x^2$となるものを求めよ.\\
+(解答例)\\
+$u=X(x)Y(y)$とおく. 与式に代入すると,
+\\
+\[
+yX(x)\frac{\mathrm{d}^2Y(y)}{\mathrm{d}y^2}=
+X(x)\frac{\mathrm{d}Y(y)}{\mathrm{d}y}.
+\]
+ここで$X(x)$は両辺にかかっているので, 任意の関数$f(x)$である.
+両辺を$X$で割って,
+%
+\begin{eqnarray*}
+y\frac{\mathrm{d}^2Y(y)}{\mathrm{d}y^2} = \frac{\mathrm{d}Y(y)}{\mathrm{d}y}.
+\end{eqnarray*}
+%
+ここで$\displaystyle{\frac{\mathrm{d}Y}{\mathrm{d}y}=p}$とおくと,
+\begin{eqnarray*}
+&& yp' = p \ \Leftrightarrow \
+\frac1p\frac{\mathrm{d}p}{\mathrm{d}y} = \frac1y.  \\[5pt]
+&\therefore& \ln|p| = \ln|y|+C'. \hspace{1cm} (C'は積分定数) \\[7pt]
+&\Leftrightarrow& \frac{\mathrm{d}Y}{\mathrm{d}y}=p = Cy. \hspace{1cm}
+\left(C=\pm e^{C'}\right) \\[3pt]
+&\therefore& \ Y = C_1y^2+C_2. \hspace{1cm} \left(C_1=\frac C2 とした \right)\\
+\end{eqnarray*}
+よって $u(x,y)=f(x)y^2+g(x)$.
+境界条件より$f(x),\ g(x)$を求めると,
+ \\[5pt]
+$y=\pm1 で u=0$ \ より \ $f(x)=-g(x)$.\\[5pt]
+また, $y=0 で u=x^2$ \ より \ $x^2=g(x)$.\\[5pt]
+よって求める解は \ $u(x,y)=-x^2y^2+x^2$.
+
+
+\newpage
+\item (超重要!) 熱伝導方程式$\displaystyle{\frac{\partial u}{\partial t} =
+\kappa \frac{\partial^2 u}{\partial x^2}~(\kappa >0)}$を変数分離法で解け.\\
+(解答例)\\[8pt]
+$u=T(t)X(x)$と変数分離し、
+\begin{eqnarray*}
+&&X\frac{d T}{d t} = \kappa T \frac{d^2 X}{d x^2} \\[5pt]
+&\Leftrightarrow& \frac{1}{\kappa T}\frac{d T}{d t} =
+\frac{1}{X} \frac{d^2 X}{d x^2} = \omega
+\end{eqnarray*}
+と定数$\omega$で置く.
+これを解くと、\\[12pt]
+%
+(i) $\omega=0$ の場合
+%
+\begin{eqnarray*}
+T &=& C_1. \\
+X &=& C_2x+C_3. \\
+\therefore \;\;\; u(x,t) &=& Ax+B.
+\end{eqnarray*}
+%
+(ii) $\omega<0$ の場合
+%
+\begin{eqnarray*}
+T &=& C_1e^{\kappa \omega t}. \\
+X &=& C_2\sin\sqrt{-\omega}x+C_3\cos\sqrt{-\omega}x. \\
+\therefore \;\;\; u(x,t) &=&
+e^{\kappa \omega t}\left(A\sin\sqrt{-\omega}x+B\cos\sqrt{-\omega}x\right).
+%
+\end{eqnarray*}
+%
+(iii) $\omega>0$ の場合
+%
+\begin{eqnarray*}
+ T &=& C_1 e^{\kappa\omega t}.\\
+ X &=& C_2 e^{\sqrt\omega x} + C_3 e^{-\sqrt\omega x}.\\
+ \therefore \ u &=&
+e^{\kappa\omega t} \left(A e^{\sqrt\omega x} + B e^{-\sqrt\omega x} \right).
+\end{eqnarray*}
+%
+$C_1,C_2,C_3$は積分定数.また、$C_1C_2=A, \ C_1C_3=B$とした.\\
+
+\newpage
+\item (超重要!) 波動方程式
+\begin{eqnarray*}
+\frac{\partial^2 u}{\partial t^2}  = c^2 \frac{\partial^2 u}{\partial x^2}
+\end{eqnarray*}
+を変数分離法を用いて解け.\\
+(解答例)\\[8pt]
+$u(x,t)=X(x)T(t)$とおく(変数分離).このとき、
+%
+\begin{eqnarray*}
+X\frac{\mathrm{d}^2 T}{\mathrm{d} t^2} =
+c^2T \frac{\mathrm{d}^2 X}{\mathrm{d} x^2} \
+\Leftrightarrow \ \frac{1}{T}\frac{\mathrm{d}^2 T}{\mathrm{d} t^2}=
+c^2 \frac{1}{X}\frac{\mathrm{d}^2 X}{\mathrm{d} x^2}. \quad \cdots (a)
+\end{eqnarray*}
+%
+左辺は$t$のみに、右辺は$x$のみに依存し、これらが$x,t$の値によらず等しいので、$(a)$式の両辺はていすうである.
+この定数を$\lambda$とおくと、\\
+%
+(i) $\lambda=0$のとき
+%
+\begin{eqnarray*}
+\frac{1}{T}\frac{\mathrm{d}^2 T}{\mathrm{d} t^2}  = 0 \ 
+&\Leftrightarrow& \ T = C_1t+C_2. \\[5pt]
+c^2 \frac{1}{X}\frac{\mathrm{d}^2 X}{\mathrm{d} x^2} = 0 \ 
+&\Leftrightarrow& \ X = C_3x+C_4. \\
+\\
+\therefore \hspace{0.5cm} u(x,t) &=& (C_1t+C_2)(C_3x+C_4).
+\end{eqnarray*}
+%
+(ii) $\lambda<0$ のとき
+%
+\begin{eqnarray*}
+\frac{1}{T}\frac{\mathrm{d}^2 T}{\mathrm{d} t^2} = \lambda<0 \ 
+&\Leftrightarrow& \ T = C_1\sin\sqrt{-\lambda}t+C_2\cos\sqrt{-\lambda}t.\\[5pt]
+c^2 \frac{1}{X}\frac{\mathrm{d}^2 X}{\mathrm{d} x^2} = \lambda<0 \ 
+&\Leftrightarrow& \ X =
+C_3\sin\frac{\sqrt{-\lambda}}cx+C_4\cos\frac{\sqrt{-\lambda}}cx.\\[5pt]
+\therefore \hspace{0.5cm} u(x,t) &=& 
+\left(C_1\sin\sqrt{-\lambda}t+C_2\cos\sqrt{-\lambda}t\right)
+\left(C_3\sin\frac{\sqrt{-\lambda}}cx+C_4\cos\frac{\sqrt{-\lambda}}cx\right).
+\end{eqnarray*}
+%
+(iii) $\lambda>0$ のとき
+%
+\begin{eqnarray*}
+\frac{1}{T}\frac{\mathrm{d}^2 T}{\mathrm{d} t^2}  = \lambda>0 \
+&\Leftrightarrow& \ T = C_1e^{\sqrt{\lambda}t}+C_2e^{-\sqrt{\lambda}t} \\[5pt]
+c^2 \frac{1}{X}\frac{\mathrm{d}^2 X}{\mathrm{d} x^2} = \lambda>0 \
+&\Leftrightarrow& \ X = C_3e^{\frac{\sqrt{\lambda}}cx}+
+C_4e^{-\frac{\sqrt{\lambda}}cx} \\[5pt]
+\therefore \hspace{0.5cm} u(x,t) &=&
+\left(C_1e^{\sqrt{\lambda}t}+C_2e^{-\sqrt{\lambda}t}\right)
+\left(C_3e^{\frac{\sqrt{\lambda}}cx}+C_4e^{-\frac{\sqrt{\lambda}}cx}\right).
+\end{eqnarray*}
+
+\newpage
+\item 2次元極座標におけるラプラス方程式
+\begin{eqnarray*}
+ \Delta f &=&  \frac{1}{r} \frac{\partial }{\partial r} \left(r \frac{\partial f}{\partial r}\right)+ \frac{1}{r^2}\frac{\partial^2 f}{\partial \phi^2}=0 
+\end{eqnarray*}
+を$f(r,\phi)=R(r)\Phi(\phi)$とする変数分離によって解け.\\
+(ヒント:$r$の積分で困ったら過去の演習の「同次形微分方程式」を参照)\\
+(解答例)\\[8pt]
+$f(r,\ \phi)= R(r) \Phi(\phi)$より
+\begin{eqnarray*}
+\Delta f =
+\frac{1}{r} \frac{\partial }{\partial r}
+\left(r \frac{\partial (R\Phi)}{\partial r}\right)+
+\frac{1}{r^2}\frac{\partial^2 (R\Phi)}{\partial \phi^2} &=& 0.\\
+\Leftrightarrow \ \frac{\Phi}{r} \frac{\mathrm{d}}{\mathrm{d}r}
+\left(r \frac{\mathrm{d} R}{\mathrm{d} r}\right)+
+\frac{R}{r^2}\frac{\mathrm{d}^2 \Phi}{\mathrm{d} \phi^2} &=& 0.\\
+\Leftrightarrow \ \frac{r}{R} \frac{\mathrm{d} }{\mathrm{d} r}
+\left(r \frac{\mathrm{d} R}{\mathrm{d} r}\right)+
+\frac{1}{\Phi}\frac{\mathrm{d}^2 \Phi}{\mathrm{d} \phi^2} &=& 0.
+\end{eqnarray*}
+第1項は$r$のみに、第2項は$\phi$のみに依存し、これらが$r,\phi$の値によらず等しいので、どちらも定数である.
+この定数を$\lambda$とおくと、
+\[
+\frac rR\frac {\mathrm{d}}{\mathrm{d}r}
+\left(r\frac{\mathrm{d}R}{\mathrm{d}r}\right)=
+-\frac1\Phi\frac{\mathrm{d}^2\Phi}{\mathrm{d}\phi^2}=\lambda.
+\]
+(i)$\lambda=0$の場合、\\
+(第1項)$=0$から、
+\begin{eqnarray*}
+\frac{r}{R} \frac{\mathrm{d} }{\mathrm{d} r}
+\left(r \frac{\mathrm{d} R}{\mathrm{d} r}\right) &=& 0
+\  \Leftrightarrow \  r \frac{\mathrm{d} R}{\mathrm{d} r} =
+C_1=\mathrm{const.}  \\[5pt]
+\Leftrightarrow \ R &=& C_1\ln{(r)} + C_2. \quad ( C_2=\mathrm{const.}. ) \\
+\end{eqnarray*}
+%
+(第2項)$=0$から、
+\begin{eqnarray*}
+\frac{1}{\Phi}\frac{\mathrm{d}^2 \Phi}{\mathrm{d} \phi^2} &=& 0
+\  \Leftrightarrow \   \frac{\mathrm{d} \Phi}{\mathrm{d} \phi} =
+C_3=\mathrm{const.}  \\[5pt]
+\Leftrightarrow \ \Phi &=& C_3 \phi + C_4.\quad ( C_4=\mathrm{const.}. ) \\
+\end{eqnarray*}
+%
+以上より
+\begin{eqnarray*}
+f= \left( C_1\ln{(r)} + C_2 \right) \left( C_3 \phi + C_4 \right).
+\end{eqnarray*}
+%
+(ii)\ $\lambda<0$の場合
+%
+\begin{eqnarray*}
+\frac{1}{\Phi}\frac{\mathrm{d}^2 \Phi}{\mathrm{d} \phi^2} &=&
+-\lambda>0 \\[5pt]
+\Leftrightarrow \ \Phi &=& C_3 e^{\sqrt{-\lambda} \phi} +
+C_4 e^{-\sqrt{-\lambda} \phi}  \hspace{0.5cm} (C_n=\mathrm{const.}
+\hspace{0.2cm}(n=1,\ 2,\ 3,\ 4))
+\end{eqnarray*}
+また、
+%
+\begin{eqnarray*}
+\frac{r}{R} \frac{\mathrm{d} }{\mathrm{d} r}
+\left(r \frac{\mathrm{d} R}{\mathrm{d} r}\right) &=& \lambda <0 \\[8pt]
+\therefore \ r^2R''+rR'-\lambda R &=& 0
+\end{eqnarray*}
+%
+これは$r=e^u$とおくと($\mathrm{d}r=e^u\mathrm{d}u$)
+%
+\begin{eqnarray*}
+\frac{1}{R} \frac{\mathrm{d} }{\mathrm{d} u}
+\left( \frac{\mathrm{d} R}{\mathrm{d} u}\right) &=& \lambda<0 \\[8pt]
+\Leftrightarrow \ R &=& C_1 e^{i\sqrt{-\lambda} u}
++ C_2 e^{-i\sqrt{-\lambda} u} =
+C_1 r^{i\sqrt{-\lambda} } + C_2 r^{-i\sqrt{-\lambda} }.
+\end{eqnarray*}
+よって、
+\begin{eqnarray*}
+ f = \left(C_1 r^{i\sqrt{-\lambda} } + C_2 r^{-i\sqrt{-\lambda} } \right)
+\left( C_3 e^{\sqrt{-\lambda} \phi}+
+C_4 e^{-\sqrt{-\lambda} \phi} \right).\\
+\end{eqnarray*}
+%
+(iii)$\lambda>0$の場合
+%
+\begin{eqnarray*}
+&&\frac{1}{\Phi}\frac{\mathrm{d}^2 \Phi}{\mathrm{d} \phi^2} = -\lambda<0 \\[5pt]
+&\Leftrightarrow& \ \Phi = C_3 \sin\sqrt\lambda \phi +
+C_4 \cos\sqrt\lambda \phi.
+\end{eqnarray*}
+%
+また、
+%
+\begin{eqnarray*}
+\frac{r}{R} \frac{\mathrm{d} }{\mathrm{d} r}
+\left(r \frac{\mathrm{d} R}{\mathrm{d} r}\right) &=& \lambda>0.
+\end{eqnarray*}
+%
+これは$r=e^u$とおくと($\mathrm{d}r=e^u\mathrm{d}u$)
+\begin{eqnarray*}
+&&\frac{1}{R} \frac{\mathrm{d} }{\mathrm{d} u}
+\left( \frac{\mathrm{d} R}{\mathrm{d} u}\right) = \lambda>0 \\[5pt]
+&\Leftrightarrow& \ R =
+C_1 e^{\sqrt{\lambda} u} + C_2 e^{-\sqrt{\lambda} u} =
+C_1 r^{\sqrt\lambda } + C_2 r^{-\sqrt\lambda }.
+\end{eqnarray*}
+よって、
+\begin{eqnarray*}
+ f = \left(C_1 r^{\sqrt\lambda } + C_2 r^{-\sqrt\lambda } \right)
+\left(C_3 \sin\sqrt\lambda \phi + C_4 \cos\sqrt\lambda \phi \right).
+\end{eqnarray*}
+
+\end{enumerate}
+\end{document}

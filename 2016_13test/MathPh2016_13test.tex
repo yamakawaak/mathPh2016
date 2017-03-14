@@ -1,0 +1,77 @@
+\documentclass[11pt]{jsarticle}
+\setlength{\textheight}{43\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\textheight}{21\footskip}
+\setlength{\textwidth}{42zw}
+%\setlength{\hoffset}{-5zw}
+\usepackage{amsmath,amssymb,bm}
+%\usepackage{txfonts}  %定義の記号
+\usepackage{fancyhdr} %ヘッダー
+\pagestyle{fancy}
+\rhead{物理数学演習 \ 2016/05/26}
+\renewcommand{\headrulewidth}{0pt} %ヘッダーラインを打ち出さない
+
+\def \bun#1#2{\left(\frac{#1}{#2}\right)} %括弧付き分数マクロ
+\def \vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+\def \rot{\nabla \times} %ローテーション
+\def \div{\nabla \cdot} %ダイバージェンス
+\def \intt{\int\!\!\!\int} %2重積分
+\def \intf#1#2#3#4{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}} %2重積分範囲付き
+\def \inttt{\int\!\!\!\int\!\!\!\int} %3重積分
+\def \intff#1#2#3#4#5#6{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}\!\!\!\int_{#5}^{#6}} %3重積分範囲付き
+
+\usepackage{graphicx}
+\usepackage{wrapfig}%テキスト回り込み
+
+\def \Vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+\begin{document}
+\begin{center}
+{\Large 演習問題その13 小テスト
+}\\
+\ \\
+\underline{学籍番号：　　　　　　　　　　},　
+\underline{氏名：　　　　　　　　　　　　}
+\end{center}
+\begin{enumerate}
+%%------------------------------%%
+\item $\displaystyle{\frac{\partial u }{\partial x} = x+y}$
+を満たし，$x=0$で$u=e^{-y}$に従って指数関数的に減少する解を求めよ．
+
+%%------------------------------%%
+\end{enumerate}
+%%-----(問題ここまで)-----%%
+
+
+
+
+
+
+
+\newpage
+%%-----(解 答  開 始)-----%%
+\setcounter{page}{1}
+\begin{center}
+{\Large
+演習問題その13小テスト 解答例}\\
+\end{center}
+\begin{enumerate}
+%%------------------------------%%
+\item $\displaystyle{\frac{\partial u }{\partial x} = x+y}$
+を満たし，$x=0$で$u=e^{-y}$に従って指数関数的に減少する解を求めよ．\\
+\\
+（解答例）\\
+\begin{eqnarray*}
+&&\frac{\partial u }{\partial x} = x+y \\[5pt]
+&\Leftrightarrow& \ u = \frac{1}{2}x^2 + xy + f(y).
+\end{eqnarray*}
+$x=0$における条件式を代入すると，
+\begin{eqnarray*}
+&& e^{-y} = f(y). \\[5pt]
+&\therefore& u = \frac{1}{2}x^2+ xy + e^{-y}.
+\end{eqnarray*}
+
+%%-----(解答ここまで)-----%%
+\end{enumerate}
+\end{document}
+
+%%%%%%%%%%%
