@@ -1,0 +1,91 @@
+\documentclass[11pt]{jarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{float}
+\setlength{\textheight}{43\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\textheight}{21\footskip}
+\setlength{\textwidth}{42zw}
+\setlength{\hoffset}{-5zw}
+\usepackage{amsmath,amssymb,bm}
+%
+\usepackage{fancyhdr} %ヘッダー
+\pagestyle{fancy}
+\rhead{物理数学 \ 2016.05.19}
+\renewcommand{\headrulewidth}{0pt} %ヘッダーラインを打ち出さない
+%
+\def \bun#1#2{\left(\frac{#1}{#2}\right)} %括弧付き分数マクロ
+\def \vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+\def \rot{\nabla \times} %ローテーション
+\def \div{\nabla \cdot} %ダイバージェンス
+\def \intt{\int\!\!\!\int} %2重積分
+\def \intf#1#2#3#4{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}} %2重積分範囲付き
+\def \inttt{\int\!\!\!\int\!\!\!\int} %3重積分
+\def \intff#1#2#3#4#5#6{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}\!\!\!\int_{#5}^{#6}} %3重積分範囲付き
+%
+%%------------------------------%%
+\begin{document}
+\begin{center}
+{\Large
+演習問題その12小テスト}\\
+\ \\
+\underline{学籍番号：　　　　　　　　　　},　
+\underline{氏名：　　　　　　　　　　　　}
+\end{center}
+\begin{enumerate}
+%%-----(問題開始)-----%%
+\item[1.]関数$f(x)$のフーリエ変換を$F(k)$とする.以下の問いに答えよ.
+\begin{enumerate}
+\item[(1)] フーリエ変換とフーリエ逆変換の定義式を書け.
+\item[(2)] $\mathcal{F}[e^{ix}]=\sqrt{2\pi}\delta (k-1)$を示せ.
+\end{enumerate}
+
+%%-----(問題終了)-----%%
+\end{enumerate}
+
+
+\newpage
+%%------------------------------%%
+%%-----(   解答ここから   )-----%%
+\begin{center}
+{\Large
+演習問題その12小テスト　解答例}\\
+\end{center}
+\begin{enumerate}
+\item[1.]関数$f(x)$のフーリエ変換を$F(k)$とする.以下の問いに答えよ.
+\begin{enumerate}
+\item[(1)] フーリエ変換とフーリエ逆変換の定義式を書け.\\
+(解答例)\\
+フーリエ変換は、$\displaystyle{\mathcal{F}[f(x)]=F(k)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(x) e^{-ik x}dx}$\\
+\\
+フーリエ逆変換は、$\displaystyle{{\mathcal{F}}^{-1}[F(k)]=f(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} F(k) e^{+ik x}dk}$\\
+\\
+
+\item[(2)] $\mathcal{F}[e^{ix}]=\sqrt{2\pi}\delta (k-1)$を示せ.
+\\
+(解答例)
+フーリエ変換の定義式より、
+\begin{eqnarray*}
+\mathcal{F}[e^{ix}] &=& \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{ix}e^{-ikx}{\rm d}x\\
+&=& \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{i(1-k)x}{\rm d}x
+\end{eqnarray*}
+デルタ関数の積分表示より、
+\[\delta (k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ikx}{\rm d}x\]
+これを$k\rightarrow 1-k$と書き直すことで与式が得られる.\\
+
+\newpage
+(採点基準) 10点満点.\\
+(1)フーリエ変換、逆変換それぞれ+3点.\\
+(2)\\
+$\mathcal{F}[e^{ix}]$が明記されていて+2点.\\
+$\delta (k-1)$の表式が説明されていて+2点(いちおう証明問題なので最低限の説明がないものは減点した).\\
+そのほか、オマケで加点してある.ちなみに(2)はフーリエ逆変換を用いても解くことができる.
+
+\end{enumerate}
+
+%%-----(解答終了)-----%%
+\end{enumerate}
+
+\newpage
+
+
+\end{document}

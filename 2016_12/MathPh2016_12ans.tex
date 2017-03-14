@@ -1,0 +1,370 @@
+\documentclass[11pt]{jsarticle}
+\setlength{\textheight}{43\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\textheight}{21\footskip}
+\setlength{\textwidth}{42zw}
+\setlength{\hoffset}{+1zw}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{fancyhdr} %ヘッダー
+\usepackage{comment} 
+\pagestyle{fancy}
+\rhead{物理数学演習 \ 2016/05/16}
+\renewcommand{\headrulewidth}{0pt} %ヘッダーラインを打ち出さない
+
+\def \bun#1#2{\left(\frac{#1}{#2}\right)} %括弧付き分数マクロ
+\def \vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+\def \rot{\nabla \times} %ローテーション
+\def \div{\nabla \cdot} %ダイバージェンス
+\def \intt{\int\!\!\!\int} %2重積分
+\def \intf#1#2#3#4{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}} %2重積分範囲付き
+\def \inttt{\int\!\!\!\int\!\!\!\int} %3重積分
+\def \intff#1#2#3#4#5#6{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}\!\!\!\int_{#5}^{#6}} %3重積分範囲付き
+
+\usepackage{graphicx}
+\usepackage{wrapfig}%テキスト回り込み
+
+\def \Vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+
+\begin{document}
+\begin{center}
+{\Large
+演習問題その12  フーリエ変換(2)}
+\end{center}
+%%%%
+※以下、$y'=\frac{dy}{dx},~y''=\frac{d^2 y}{dx^2}$とする.
+\begin{enumerate}
+
+\item 次の関数をフーリエ級数に展開せよ.
+\begin{equation*}
+ f(x) =
+   \begin{cases}
+    -1 \ (-T<x<0)\\
+    0 \ (x=0)\\
+    1 \ (0<x<T)
+  \end{cases}
+\end{equation*}
+(解答例)周期$2T$の関数$f(x)$のフーリエ級数は、
+\begin{eqnarray*}
+f(x) &=& \frac{a_0}{2} +\sum_{n=1}^{\infty}\left(a_n\cos{\frac{n\pi x}{T}}+b_n\sin{\frac{n\pi x}{T}}\right),\\
+a_n &=& \frac{1}{T} \int_{-T}^T f(x)\cos{\frac{n\pi x}{T}}{\rm d}x,\\
+b_n &=& \frac{1}{T} \int_{-T}^T f(x)\sin{\frac{n\pi x}{T}}{\rm d}x.
+\end{eqnarray*}
+$f(x)$を代入して$a_n,b_n$を計算すると、
+\begin{eqnarray*}
+a_0 &=& 0\\
+a_n &=& 0\\
+b_n &=& \frac{1}{T}\int_0^T \sin{\frac{n\pi x}{T}}{\rm d}x +\frac{1}{T}\int_{-T}^0 \left(-\sin{\frac{n\pi x}{T}}\right){\rm d}x =\frac{2}{n\pi}\{1-(-1)^n\}
+\end{eqnarray*}
+これらを$f(x)$に代入することにより、
+\begin{eqnarray*}
+f(x) = \sum_{n=1}^{\infty}\left[\frac{2}{n\pi}\{1-(-1)^n\}\sin{\frac{n\pi x}{T}} \right]
+\end{eqnarray*}
+\item $f(x)=e^x(周期2\pi,-\pi<x<\pi)$を指数関数型のフーリエ級数に展開せよ.\\
+(解答例)$e^{\neq in\pi}=\cos{n\pi}=(-1)^n$であることに注意すると、展開係数は、
+\[c_k = \frac{1}{2\pi}\int_0^{2\pi}e^xe^{-inx}{\rm d}x = \frac{1}{2\pi}\left[\frac{e^{(1-in)x}}{1-in}\right]= \frac{(-1)^n(e^{\pi}-e^{-\pi})}{2\pi (1-in)}\]
+よって複素級数展開したものは、
+\[e^x=\frac{e^{\pi}-e^{-\pi}}{2\pi}\sum_{n=-\infty}^{\infty}\frac{(-1)^n e^{inx}}{(1-in)}\]
+
+\newpage
+\item 以下の問に答えよ．
+\begin{enumerate}
+\item[(1)] \ 次の関数$f(x)$をフーリエ級数展開せよ(第11回演習問題参照)．
+\begin{eqnarray}
+f(x) = x^2 　 (-\pi<x<\pi, \hspace{0.2cm} \mbox{周期}2\pi)\nonumber
+\end{eqnarray}
+(解答例)\\
+周期$2\pi$の関数$f(x)$は以下の形にフーリエ級数展開できる．
+%
+\begin{eqnarray*}
+f(x) &=& \frac{a_0}{2}+\sum^{\infty}_{n=1}(a_{n}\cos nx +b_{n}\sin nx). \\[5pt]
+a_n &=& \frac{1}{\pi}\int^{\pi}_{-\pi}f(x)\cos nx{\rm d}x, \\
+b_n &=& \frac{1}{\pi}\int^{\pi}_{-\pi}f(x)\sin nx{\rm d}x. 
+\end{eqnarray*}
+%
+$f(x) = x^2$を代入して$a_n, \ b_n$を計算すると，
+%
+\begin{eqnarray*}
+a_{0} &=& \frac{1}{\pi}\int^{\pi}_{-\pi}x^2 {\rm d}x=\frac{2}{3}\pi^2. \\[5pt]
+a_n &=& \frac{1}{\pi}\int^{\pi}_{-\pi}x^{2}\cos nx{\rm d}x \\[6pt]
+&=& \frac{1}{\pi} \left[ \frac{x^2 \sin nx}{n}+\frac{2x\cos nx}{n^2}-\frac{2\sin nx}{n^3} \right] ^{\pi}_{-\pi}=\frac{4}{n^2}(-1)^n.
+\hspace{1cm} (n\ne 0)\\
+\end{eqnarray*}
+%
+また，$x^2\sin nx$は奇関数なので，
+%
+\begin{eqnarray*}
+b_n &=& \frac{1}{\pi}\int^{\pi}_{-\pi}x^2\sin nx{\rm d}x= 0.
+\end{eqnarray*}
+%
+これらを$f(x)$に代入することにより，
+%
+\begin{eqnarray*}
+\label{1}
+f(x) = x^2=\frac{1}{3}\pi^2+\sum^\infty_{n=1}\left( \frac{4}{n^2}(-1)^n\cos nx \right).\\
+\end{eqnarray*}
+
+\item[(2)]  区間$[-\pi,\pi]$で区分的に連続な関数$f(x)$のフーリエ係数に対して
+\[
+\frac{a_0^2}2+\sum_{n=1}^{\infty}(a_n^2+b_n^2)=\frac1{\pi}\int_{-\pi}^\pi\{f(x)\}^2\mathrm{d}x \;\;\;\;\; (パーセバルの等式)
+\]
+が成り立つことを示せ．
+(解答例)\\
+\[\hspace{-3cm}
+f(x) = \frac{a_0}{2}+\sum^{\infty}_{n=1}(a_{n}\cos nx +b_{n}\sin nx)
+\]
+の両辺を2乗すると，
+\begin{eqnarray*}
+\{f(x)\}^2 &=& \frac{a_0^2}4+a_0\sum^{\infty}_{n=1}(a_{n}\cos nx +b_{n}\sin nx) \\
+&&+ \sum^{\infty}_{n=1}(a_{n}\cos nx +b_{n}\sin nx)\times\sum^\infty_{m=1}(a_m\cos mx +b_m\sin mx) \\[8pt]
+&=& \frac{a_0^2}4+a_0\sum^{\infty}_{n=1}(a_{n}\cos nx +b_{n}\sin nx) \\
+&&+ \sum^{\infty}_{n=1}\sum^\infty_{m=1}(a_{n}\cos nx +b_{n}\sin nx)(a_m\cos mx +b_m\sin mx).\\
+\end{eqnarray*}
+%
+よって，与式の右辺は，
+%
+\begin{eqnarray*}
+\frac1{\pi}\int_{-\pi}^\pi\{f(x)\}^2\mathrm{d}x &=& \frac1\pi\frac{a_0^2}4\left[x\right]_{-\pi}^\pi+\frac{a_0}\pi\sum_{n=1}^\infty\left[\frac{a_n}n\sin nx-\frac{b_n}n\cos nx\right]_{-\pi}^\pi \\
+&&+ \ \frac1\pi\sum^{\infty}_{n=1}\sum^\infty_{m=1}\int_{-\pi}^\pi(a_na_m\cos nx\cos mx+b_na_m\sin nx\cos mx \\[5pt]
+&&+ \ a_nb_m\cos nx\sin mx+b_nb_m\sin nx\sin mx)\mathrm{d}x \\[5pt]
+&=& \frac{a_0^2}2+0+\frac1\pi\sum^{\infty}_{n=1}\sum^\infty_{m=1}(\pi a_na_m\delta_{nm}+\pi b_nb_m\delta_{nm}) \\
+&=& \frac{a_0^2}2+\sum^{\infty}_{n=1}(a_n^2+b_n^2).\\
+\end{eqnarray*}
+ただし，$\delta_{nm}$はクロネッカーのデルタ．
+以上より，パーセバルの等式が示された．\\
+
+
+
+\item[(3)]  \ (1),(2)の結果を用いて以下の等式を示せ．
+\[
+1+\frac1{2^4}+\frac1{3^4}+\frac1{4^4}+\cdots=\frac{\pi^4}{90}．
+\]
+(解答例)\\
+(1)で求めた$-\pi<x<\pi$での$f(x)=x^2$のフーリエ展開を使う．\\
+このとき，\\
+\[
+a_0 =\frac{2\pi^2}3 \; , \; 
+a_n = \frac4{n^2}(-1)^n \; , \;
+b_n = 0.\\[8pt]
+\]
+また，(2)より，
+\begin{eqnarray*}
+\frac{2\pi^4}9+\sum_{n=1}^\infty\frac{16}{n^4} &=& \frac1\pi\int_{-\pi}^\pi\{f(x)\}^2\mathrm{d}x =
+\frac1\pi\int_{-\pi}^\pi x^4\mathrm{d}x \\[8pt]
+&=& \frac25\pi^4. \\
+\end{eqnarray*}
+よって、
+\begin{eqnarray*}
+\sum_{n=1}^\infty\frac1{n^4} &=& \frac{\pi^4}{90}.
+\end{eqnarray*}
+\end{enumerate}
+
+
+\vspace{20mm}
+\item 次の積分値を計算せよ．
+\begin{equation*}
+\int_{-\infty}^{\infty} \delta (x^2-a^2)e^{ix} {\rm d}x
+\end{equation*}
+(解答例)\\
+\begin{eqnarray*}
+\int_{-\infty}^{\infty} \delta (x^2-a^2)e^{ix} {\rm d}x &=& \frac{1}{2|a|}\int_{-\infty}^{\infty} \delta \{ \delta (x-a)+\delta (x+a)\}e^{ix} {\rm d}x\\
+&=& \frac{1}{2|a|}(e^{ia}+e^{-ia}) = \frac{\cos a}{|a|}
+\end{eqnarray*}
+
+\newpage
+\item デルタ関数の定義により次の関係式を証明せよ.
+\begin{equation*}
+x\delta '(x)+\delta (x)=0 \qquad (ヒント：部分積分を用いる)
+\end{equation*}
+(解答例)\\
+両辺に性質の良い(何度も微分可能で$x\rightarrow \pm \infty$で急激に0になる)関数$\varphi (x)$をかけ、区間$[-\infty ,\infty]$で積分することで証明する.この場合は、
+\[\int_{-\infty}^{\infty}\varphi (x) x\delta '(x){\rm d}x = -\int_{-\infty}^{\infty} \varphi (x) \delta (x){\rm d}x\]
+を示せばよい.部分積分することにより、
+\begin{eqnarray*}
+(左辺) &=& [\varphi (x)x\delta (x)]_{-\infty}^{\infty}-\int_{-\infty}^{\infty}\varphi '(x) x\delta (x){\rm d}x- \int_{-\infty}^{\infty} \varphi (x) \delta (x){\rm d}x =-\varphi (0)\\
+(右辺) &=& -\varphi (0) \qquad (デルタ関数の定義より)
+\end{eqnarray*}
+よって、(左辺)=(右辺)となり与式は示された.
+
+\newpage
+\item 2階の定数係数線形の微分方程式
+\begin{eqnarray*}
+y''+3y'+2y=e^{ix}
+\end{eqnarray*}
+の特殊解をフーリエ変換を用いて求める．以下の問に答えよ．
+\begin{description}
+\item[(1)] $\mathcal{F}[e^{ix}]=\sqrt{2\pi}\delta (k-1)$を示せ.\\
+(解答例)\\
+フーリエ変換の定義式より、
+\begin{eqnarray*}
+\mathcal{F}[e^{ix}] &=& \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{ix}e^{-ikx}{\rm d}x\\
+&=& \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{i(1-k)x}{\rm d}x
+\end{eqnarray*}
+デルタ関数の積分表示より、
+\[\delta (k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ikx}{\rm d}x\]
+これを$k\rightarrow 1-k$と書き直すことで与式が得られる.\\
+\item[(2)] 任意の関数$f(k)$に対して、$\displaystyle{\int_{-\infty}^{\infty} f(k)\delta (k-k_0){\rm d}k=f(k_0)}$を示せ.\\
+(解答例)\\
+左辺において$x=k-k_0,~f(x+k_0)=g(x)$として、デルタ関数の定義、
+\[\int_{-\infty}^{\infty} g(x)\delta (x) {\rm d}x=g(0)\]
+に適用すると与式を得る.\\
+
+\item[(3)] $y(x)$のフーリエ変換を$Y(k)$として、与えられた微分方程式より、$Y(k)$を$k$とデルタ関数を用いて表せ.\\
+(解答例)\\[8pt]
+与えられた微分方程式の両辺をフーリエ変換する．
+%
+\begin{eqnarray*}
+\mathcal{F}\left[f^{(n)}(x) \right]=(ik)^nF(k)
+\end{eqnarray*}
+%
+であるから，与式の左辺は，
+\begin{eqnarray*}
+(左辺)&=&(ik)^2Y(k)+3\cdot ikY(k)+2Y(k)
+\end{eqnarray*}
+となる．一方、与式の右辺は
+\begin{eqnarray*}
+\mathcal{F}\left[e^{ix} \right]&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{ix}e^{-ikx}dx\\
+&=&\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{-i(k-1)x}dx\\
+&=&\sqrt{2\pi}\delta(u-1). \hspace{1cm} 
+\end{eqnarray*}
+となる．ここで、デルタ関数の積分表示、
+\begin{equation*}
+\delta(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-ikx}dx
+\end{equation*}
+を用いた．
+%
+これを整理することで，
+%
+\begin{eqnarray*}
+Y(k)=\frac{\sqrt{2\pi}\delta(k-1)}{-k^2+3ik+2}.\\
+\end{eqnarray*}
+
+\item[(4)] (3)で求めた$Y(k)$をフーリエ逆変換せよ．(得られる$y(x)$は与えられた微分方程式を満たす特殊解である)
+(解答例)\\[8pt]
+%
+\begin{eqnarray*}
+y(x)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}Y(k)e^{ikx}\mathrm{d}k =
+\int^{\infty}_{-\infty}\frac{\delta(k-1)}{-k^2+3ik+2}e^{ikx}\mathrm{d}k.
+\end{eqnarray*}
+%
+ここで$f(k)=e^{ikx}\left(-k^2+3ik+2 \right)^{-1}$と置けば，問(2)の結果より，
+%
+\begin{eqnarray*}
+y(x)=f(1)=\frac{e^{ix}}{1+3i}.\\
+\end{eqnarray*}
+%
+(追記)\\[5pt]
+線形微分方程式の一般解は特殊解と斉次解の線形結合で表される．\\
+いま，斉次微分方程式$y''+3y'+2y=0$の一般解は$y=C_1e^{-1}+C_2e^{-2x}$であるから，
+与式の微分方程式の一般解は，
+%
+\begin{eqnarray*}
+y=C_1e^{-1}+C_2e^{-2x}+\frac{e^{ix}}{1+3i}.\\
+\end{eqnarray*}
+%
+(※斉次解は特性方程式より容易に求められる．各自で確かめよ)
+\end{description}
+
+\newpage
+\section*{$+\alpha 問題$}
+\item 次の積分値を計算せよ.\\
+\begin{description}
+\item[(1)] $\displaystyle{\int_{-\infty}^{\infty} \delta (2x-1)\sin{\pi x} {\rm d}x}$\\
+(解答例)
+\begin{eqnarray*}
+\int_{-\infty}^{\infty} \delta (2x-1)\sin{\pi x} {\rm d}x &=& \int_{-\infty}^{\infty} \frac{1}{2}\delta (x-\frac{1}{2})\sin{\pi x} {\rm d}x\\
+ &=& \frac{1}{2}\sin{\frac{\pi}{2}} = \frac{1}{2}
+\end{eqnarray*}
+
+\vspace{60mm}
+\item[(2)] $\displaystyle{\int_{-\infty}^{\infty} \delta '(x)(x^2-x) {\rm d}x}$\\
+(解答例)
+\begin{eqnarray*}
+\int_{-\infty}^{\infty} \delta '(x)(x^2-x) {\rm d}x &=& \int_{-\infty}^{\infty} -\frac{\delta (x)}{x} (x^2-x) {\rm d}x\\
+&=& \int_{-\infty}^{\infty} \delta (x)(1-x) {\rm d}x = 1
+\end{eqnarray*}
+\end{description}
+
+
+
+\newpage
+\item $\mathcal{F}[f(x)]=F(k),~\mathcal{F}[g(x)]=G(k)$として、次の等式を証明せよ.\\
+\begin{description}
+\item[(1)] \hspace{0.5cm}
+$\displaystyle{\int_{-\infty}^{\infty} f(t)G(t){\rm d}t = \int_{-\infty}^{\infty} F(t)g(t){\rm d}t}$\\
+\\
+(解答例)
+\begin{eqnarray*}
+(左辺) &=& \int_{-\infty}^{\infty}f(t) \left(\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} g(x)e^{-itx}{\rm d}x \right){\rm d}t\\
+&=& \int_{-\infty}^{\infty} \left(\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} f(t)e^{-itx}{\rm d}t \right)g(x){\rm d}x\\
+&=& \int_{-\infty}^{\infty} F(t)g(t){\rm d}t\\
+&=& (右辺)
+\end{eqnarray*}
+
+\vspace{20mm}
+\item[(2)] \hspace{0.5cm}
+$\displaystyle{\mathcal{F}[f(ax)]=\frac{1}{|a|}F(\frac{k}{a})}\qquad (aは実定数)$\\
+\\
+(解答例)\\
+$a>0$のとき、$ax=X$とおくと、
+\begin{eqnarray*}
+\mathcal{F}[f(ax)] &=& \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(X)e^{-iu\frac{X}{a}}\cdot\frac{1}{a} {\rm d}X\\
+&=& \frac{1}{a}\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(X)e^{-i\frac{u}{a}X}{\rm d}X\right)\\
+&=& \frac{1}{a}F\left(\frac{u}{a} \right)
+\end{eqnarray*}
+$a<0$のときも同様にする.積分区間に注意して、
+\begin{eqnarray*}
+\mathcal{F}[f(ax)] &=& \frac{1}{\sqrt{2\pi}}\int_{\infty}^{-\infty} f(X)e^{-iu\frac{X}{a}}\cdot\frac{1}{a} {\rm d}X\\
+&=& -\frac{1}{a}\left(\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} f(X)e^{-i\frac{u}{a}X}{\rm d}X\right)\\
+&=& -\frac{1}{a}F\left(\frac{u}{a} \right)
+\end{eqnarray*}
+したがって、与式が導かれる.
+
+\end{description}
+
+\newpage
+
+\item ${\phi}_n(x)~(n=1,2,\cdots )$が区間$[a,b]$で正規直交関数系を作るとき、以下の関係式が成立する.以下の問いに答えよ.
+\begin{equation*}
+\int_a^b {\phi}_m^*(x){\phi}_n(x){\rm d}x={\delta}_{nm}\qquad ({\delta}_{nm}はクロネッカーのデルタ)
+\end{equation*}
+\begin{enumerate}
+\item[(1)] 関数$f(x)$が${\phi}_n(x)$を用いて、\[f(x)=\sum_{n=1}^{\infty}c_n{\phi}_n(x)\]と級数展開できるとすれば、係数$c_n$は、\[c_n=\int_a^b f(x){\phi}_n(x){\rm d}x\]より決められることを示せ.($c_n$を一般化フーリエ係数という)\\
+\\
+(解答例)\\
+\\
+$f(x)=\sum_{n=1}^{\infty}c_n{\phi}_n(x)$の両辺に${\phi}_m(x)$をかけて、$x$について区間$[a,b]$で積分すると、
+\[\int_a^b f(x){\phi}_m(x){\rm d}x=\sum_{n=1}^{\infty}c_n \int_a^b {\phi}_n(x){\phi}_m(x){\rm d}x\]
+$\{\phi_n(x)\}$は正規直交関数系をつくるから、
+\begin{equation*}
+\int_a^b {\phi}_m^*(x){\phi}_n(x){\rm d}x={\delta}_{nm}\qquad ({\delta}_{nm}はクロネッカーのデルタ)
+\end{equation*}
+したがって、
+\[\int_a^b f(x){\phi}_m(x){\rm d}x=c_m.\]
+
+\newpage
+\item[(2)] 関数$\displaystyle{{\phi}_m(x)=\frac{1}{\sqrt{2\pi}}e^{imx}~(m=0,\pm 1,\pm 2,\cdots )}$は区間$[-\pi ,\pi]$で正規直交関数系を作ることを示せ.
+\\
+\\
+(解答例)\\
+$n\neq m$のとき、
+\begin{eqnarray*}
+\int_{-\pi}^{\pi} {\phi}_m^*(x){\phi}_n(x) {\rm d}x &=& \int_{-\pi}^{\pi} \frac{1}{\sqrt{2\pi}}e^{-imx}\frac{1}{\sqrt{2\pi}}e^{inx} {\rm d}x =\frac{1}{2\pi}\left[\frac{1}{i(n-m)}e^{i(n-m)x} \right]_{-\pi}^{\pi}\\
+&=& \frac{1}{2\pi}\frac{1}{i(n-m)}\{e^{i(n-m)\pi}-e^{-i(n-m)\pi}\}=0
+\end{eqnarray*}
+$n=m$のとき、
+\begin{eqnarray*}
+\int_{-\pi}^{\pi} {\phi}_m^*(x){\phi}_m(x) {\rm d}x &=& \int_{-\pi}^{\pi} \frac{1}{\sqrt{2\pi}}e^{-imx}\frac{1}{\sqrt{2\pi}}e^{imx} {\rm d}x \\
+&=& 1
+\end{eqnarray*}
+よって、$\{{\phi}_m(x)\}$は正規直交関数系となる.
+\end{enumerate}
+
+
+\end{enumerate}
+\end{document}
+
+
+
+
+
+

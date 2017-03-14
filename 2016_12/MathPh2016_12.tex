@@ -1,0 +1,144 @@
+\documentclass[11pt]{jsarticle}
+\setlength{\textheight}{43\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\textheight}{21\footskip}
+\setlength{\textwidth}{42zw}
+\setlength{\hoffset}{+1zw}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{fancyhdr} %ヘッダー
+\usepackage{comment} 
+\pagestyle{fancy}
+\rhead{物理数学演習 \ 2016/05/16}
+\renewcommand{\headrulewidth}{0pt} %ヘッダーラインを打ち出さない
+
+\def \bun#1#2{\left(\frac{#1}{#2}\right)} %括弧付き分数マクロ
+\def \vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+\def \rot{\nabla \times} %ローテーション
+\def \div{\nabla \cdot} %ダイバージェンス
+\def \intt{\int\!\!\!\int} %2重積分
+\def \intf#1#2#3#4{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}} %2重積分範囲付き
+\def \inttt{\int\!\!\!\int\!\!\!\int} %3重積分
+\def \intff#1#2#3#4#5#6{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}\!\!\!\int_{#5}^{#6}} %3重積分範囲付き
+
+\usepackage{graphicx}
+\usepackage{wrapfig}%テキスト回り込み
+
+\def \Vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+
+\begin{document}
+\begin{center}
+{\Large
+演習問題その12  フーリエ変換(2)}
+\end{center}
+%%%%
+※以下、$y'=\frac{dy}{dx},~y''=\frac{d^2 y}{dx^2}$とする.
+\begin{enumerate}
+
+\item 次の関数をフーリエ級数に展開せよ.
+\begin{equation*}
+ f(x) =
+   \begin{cases}
+    -1 \ (-T<x<0)\\
+    0 \ (x=0)\\
+    1 \ (0<x<T)
+  \end{cases}
+\end{equation*}
+
+\newpage
+\item $f(x)=e^x(周期2\pi,-\pi<x<\pi)$を指数関数型のフーリエ級数に展開せよ.
+
+\newpage
+\item 以下の問に答えよ．
+\begin{enumerate}
+\item[(1)] \ 次の関数$f(x)$をフーリエ級数展開せよ(第11回演習問題参照)．
+\begin{eqnarray}
+f(x) = x^2 　 (-\pi<x<\pi, \hspace{0.2cm} \mbox{周期}2\pi)\nonumber
+\end{eqnarray}
+
+\item[(2)]  区間$[-\pi,\pi]$で区分的に連続な関数$f(x)$のフーリエ係数に対して
+\[
+\frac{a_0^2}2+\sum_{n=1}^{\infty}(a_n^2+b_n^2)=\frac1{\pi}\int_{-\pi}^\pi\{f(x)\}^2\mathrm{d}x \;\;\;\;\; (パーセバルの等式)
+\]
+が成り立つことを示せ．
+
+\newpage
+\item[(3)]  \ (1),(2)の結果を用いて以下の等式を示せ．
+\[
+1+\frac1{2^4}+\frac1{3^4}+\frac1{4^4}+\cdots=\frac{\pi^4}{90}．
+\]
+\end{enumerate}
+
+
+\vspace{80mm}
+\item 次の積分値を計算せよ．
+\begin{equation*}
+\int_{-\infty}^{\infty} \delta (x^2-a^2)e^{ix} {\rm d}x
+\end{equation*}
+
+\newpage
+\item デルタ関数の定義により次の関係式を証明せよ.
+\begin{equation*}
+x\delta '(x)+\delta (x)=0 \qquad (ヒント：部分積分を用いる)
+\end{equation*}
+
+
+\newpage
+\item 2階の定数係数線形の微分方程式
+\begin{eqnarray*}
+\label{a}
+y''+3y'+2y=e^{ix}
+\end{eqnarray*}
+の特殊解をフーリエ変換を用いて求める．以下の問に答えよ．
+\begin{description}
+\item[(1)] $\mathcal{F}[e^{ix}]=\sqrt{2\pi}\delta (k-1)$を示せ.
+\item[(2)] 任意の関数$f(k)$に対して、$\displaystyle{\int_{-\infty}^{\infty} f(k)\delta (k-k_0){\rm d}k=f(k_0)}$を示せ.
+\newpage
+\item[(3)] $y(x)$のフーリエ変換を$Y(k)$として、与えられた微分方程式より、$Y(u)$を$u$とデルタ関数を用いて表せ.
+\item[(4)] (3)で求めた$Y(k)$をフーリエ逆変換せよ．(得られる$y(x)$は与えられた微分方程式を満たす特殊解である)
+\end{description}
+
+
+
+\newpage
+\section*{$+\alpha 問題$}
+\item 次の積分値を計算せよ.\\
+\begin{description}
+\item[(1)] $\displaystyle{\int_{-\infty}^{\infty} \delta (2x-1)\sin{\pi x} {\rm d}x}$
+\vspace{80mm}
+\item[(2)] $\displaystyle{\int_{-\infty}^{\infty} \delta '(x)(x^2-x) {\rm d}x}$
+\end{description}
+
+\newpage
+\item $\mathcal{F}[f(x)]=F(k),~\mathcal{F}[g(x)]=G(k)$として、次の等式を証明せよ.\\
+\begin{description}
+\item[(1)] \hspace{0.5cm}
+$\displaystyle{\int_{-\infty}^{\infty} f(t)G(t){\rm d}t = \int_{-\infty}^{\infty} F(t)g(t){\rm d}t}$
+
+\vspace{80mm}
+\item[(2)] \hspace{0.5cm}
+$\displaystyle{\mathcal{F}[f(ax)]=\frac{1}{|a|}F(\frac{k}{a})}\qquad (aは実定数)$
+\end{description}
+
+\newpage
+
+\item ${\phi}_n(x)~(n=1,2,\cdots )$が区間$[a,b]$で正規直交関数系を作るとき、以下の関係式が成立する.以下の問いに答えよ.
+\begin{equation*}
+\int_a^b {\phi}_m^*(x){\phi}_n(x){\rm d}x={\delta}_{nm}\qquad ({\delta}_{nm}はクロネッカーのデルタ)
+\end{equation*}
+\begin{enumerate}
+\item[(1)] 関数$f(x)$が${\phi}_n(x)$を用いて、\[f(x)=\sum_{n=1}^{\infty}c_n{\phi}_n(x)\]と級数展開できるとすれば、係数$c_n$は、\[c_n=\int_a^b f(x){\phi}_n(x){\rm d}x\]より決められることを示せ.($c_n$を一般化フーリエ係数という)
+\newpage
+\item[(2)] 関数$\displaystyle{{\phi}_m(x)=\frac{1}{\sqrt{2\pi}}e^{imx}~(m=0,\pm 1,\pm 2,\cdots )}$は区間$[-\pi ,\pi]$で正規直交関数系を作ることを示せ.
+\end{enumerate}
+
+
+
+
+\end{enumerate}
+\end{document}
+
+
+
+
+
+
