@@ -1,0 +1,98 @@
+\documentclass[11pt]{jarticle}
+\setlength{\textheight}{43\baselineskip}
+\addtolength{\textheight}{\topskip}
+\setlength{\textheight}{21\footskip}
+\setlength{\textwidth}{42zw}
+\setlength{\hoffset}{-5zw}
+\usepackage{amsmath,amssymb,bm}
+%
+\usepackage{fancyhdr} %ヘッダー
+\pagestyle{fancy}
+\rhead{物理数学 \ 2016.04.25}
+\renewcommand{\headrulewidth}{0pt} %ヘッダーラインを打ち出さない
+%
+\def \bun#1#2{\left(\frac{#1}{#2}\right)} %括弧付き分数マクロ
+\def \vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+\def \rot{\nabla \times} %ローテーション
+\def \div{\nabla \cdot} %ダイバージェンス
+\def \intt{\int\!\!\!\int} %2重積分
+\def \intf#1#2#3#4{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}} %2重積分範囲付き
+\def \inttt{\int\!\!\!\int\!\!\!\int} %3重積分
+\def \intff#1#2#3#4#5#6{\int_{#1}^{#2}\!\!\!\int_{#3}^{#4}\!\!\!\int_{#5}^{#6}} %3重積分範囲付き
+%
+\usepackage{graphicx}
+%%------------------------------%%
+\begin{document}
+\begin{center}
+{\Large
+演習問題その5小テスト}\\
+\ \\
+\underline{学籍番号：　　　　　　　　　　},　
+\underline{氏名：　　　　　　　　　　　　}
+\end{center}
+\begin{enumerate}
+%%-----(問題開始)-----%%
+\item[1.]
+円柱座標系$(\rho ,\phi ,z)$から球座標系$(r,\theta ,\phi )$への変換に対するヤコビアンを求めよ.
+%%-----(問題終了)-----%%
+\end{enumerate}
+
+
+\newpage
+%%------------------------------%%
+%%-----(   解答ここから   )-----%%
+\begin{center}
+{\Large
+演習問題その5小テスト　解答例}\\
+\end{center}
+\begin{enumerate}
+\item[1.]
+円柱座標系$(\rho ,\phi ,z)$から球座標系$(r,\theta ,\phi )$への変換に対するヤコビアンを求めよ.
+\\
+（解答例）\\
+\begin{eqnarray*}
+\left\{
+\begin{array}{cl}
+\rho=&r\sin\theta \\
+\phi=&\phi \\
+z=&r\cos\theta
+\end{array}
+\right.
+\end{eqnarray*}
+であるから、ヤコビアンは
+\begin{eqnarray*}
+\frac{\partial(\rho,\phi,z)}{\partial(r,\theta,\phi)}&=&
+\begin{array}{|ccc|}
+\sin\theta & r\cos\theta & 0 \\
+0 & 0 & 1 \\
+\cos\theta & -r\sin\theta & 0
+\end{array}
+\\[10pt]
+&=&
+(-1)^{(3+2)} \;
+\begin{array}{|cc|}
+\sin\theta &r\cos\theta\\
+\cos\theta &-r\sin\theta
+\end{array}
+\\
+\\
+&=& r.
+\end{eqnarray*}
+
+%%-----(解答終了)-----%%
+\end{enumerate}
+
+\newpage
+採点基準\\
+\\
+$(\rho ,\phi ,z)$を$(r,\theta ,\phi)$で書き換えられている:5点\\
+\\
+ヤコビアンの表式が正しい:2点\\
+\\
+最終的な答えが正しい:3点\\
+\\
+$\frac{\partial (x,y,z)}{\partial (\rho ,\phi ,z)},~\frac{\partial (x,y,z)}{\partial (r,\theta ,\phi )}$が書けている場合は、おまけでそれぞれ+1点\\
+\\
+答えを$\frac{r^2\sin\theta}{\rho}$としているものはそれぞれの座標系の変数が混在しているため、8点とした。
+
+\end{document}

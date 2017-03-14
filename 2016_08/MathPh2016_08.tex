@@ -1,0 +1,124 @@
+\documentclass[a4paper,11pt,fleqn]{jarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+
+\def \vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+\def \bun#1#2{\left(\frac{#1}{#2}\right)} %括弧つき分数マクロ
+\def \rot{\nabla \times} %rot
+\def \div{\nabla \cdot} %div
+\def \intt{\int\!\!\!\int} %2重積分
+\def \inttt{\int\!\!\!\int\!\!\!\int} %3重積分
+
+% ページレイアウト
+\setlength{\topmargin}{10mm}
+  \addtolength{\topmargin}{-1in}
+\setlength{\oddsidemargin}{30mm}
+  \addtolength{\oddsidemargin}{-1in}
+\setlength{\textwidth}{150mm}
+\setlength{\textheight}{250mm}
+\setlength{\headsep}{2zw}
+\setlength{\headheight}{2zw}
+\setlength{\topskip}{15mm}
+\linespread{1.0}
+
+% サブセクションを1.,2.にする設定
+\renewcommand{\thesubsection}{\arabic{subsection}.}
+
+% サブサブセクションを(1),(2)にする設定
+\renewcommand{\thesubsubsection}{(\arabic{subsubsection})}
+
+% 大問2の3番目の計算式のラベルを(2.3)にする設定
+% 計算式の参照には\eqref{eq:hoge}を使う
+\makeatletter
+  \renewcommand{\theequation}{\arabic{subsection}.\arabic{equation}}
+  \@addtoreset{equation}{subsection}
+\pagestyle{fancy}
+% ヘッダーの設定
+  \lhead[物理数学　2016.04.28]{\leftmark}
+  \rhead[\leftmark]{物理数学 2016.04.28}
+\renewcommand{\headrulewidth}{0pt}
+\makeatother
+
+
+
+\begin{document}
+
+
+\begin{center}
+\begin{Large}
+演習問題その8  常微分方程式(3)
+\end{Large}
+\end{center}
+
+\subsection{}
+次の1階高次の微分方程式を解け.ただし、$dy/dx=y'$とする.
+\begin{eqnarray*}
+y=xy'-y^2/4
+\end{eqnarray*}
+
+\newpage
+\subsection{}
+次の微分方程式の一般解を求めよ.
+\subsubsection{$y''+4y=x$}
+
+\vspace{80mm}
+\subsubsection{$y''-5y'+6y=e^{-x}$}
+
+\newpage
+\subsection{}
+次の高階線形微分方程式を解け.
+\subsubsection{$y'''+y''-21y'-45y=0$}
+
+\vspace{80mm}
+\subsubsection{$y'''+y''-5y'+3y=0$}
+
+\newpage
+\subsection{}
+次の微分方程式を解け.
+\subsubsection{$y=x(y'+1)+y'$}
+
+\vspace{90mm}
+\subsubsection{$y=x{y'}^2+{y'}^2$}
+
+\newpage
+\subsection{}
+$p=y'$とおいて階数の引き下げを行うことにより、次の微分方程式を解け.
+\subsubsection{$xy''-3y'=0$}
+
+\vspace{90mm}
+\subsubsection{$x^2y''=2xy'+x^2$}
+
+\newpage
+\subsection{}
+次の高階同次形の微分方程式を解け.
+\subsubsection{$x^2y''+xy'+3y=0$}
+
+\vspace{90mm}
+\subsubsection{$yy''-{y'}^2-6xy^2=0$}
+
+\newpage
+\subsection{$+\alpha$問題}
+\subsubsection{単振り子}
+振り子の最下点からの円弧に沿った長さを$s$をすると、
+単振り子の運動方程式は、
+\begin{eqnarray*}
+m\frac{d^2s}{dt^2}=-mg\sin\theta\sim-mg\frac{s}{l}
+\end{eqnarray*}
+ここで$\theta\ll1$である。ある時刻tにおける変位s(t)を求めよ。
+ここで$t=0$のときの質点は最下点$s=0$で速度$v_0$とする。
+
+\newpage
+\subsubsection{強制振動}
+\begin{eqnarray*}
+\frac{d^2y}{dt^2}+\omega_0^2y=F\cos{\omega{t}}
+\end{eqnarray*}
+は固有角周波数$\omega_0$の振動子に外力$F\cos{\omega{t}}$を加えたときの振動子の運動を記述する方程式である。このとき、以下の問いに答えよ。
+\begin{description}
+\item[(1)]$\omega\neq\omega_0$の場合の微分方程式の一般解を求めよ。
+\item[(2)]$\omega=\omega_0$の場合の微分方程式の一般解を求めよ。
+\end{description}
+
+
+\end{document}

@@ -1,0 +1,120 @@
+\documentclass[a4paper,11pt,fleqn]{jarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+
+\def \vec#1{\mbox{\boldmath $#1$}} %ベクトルマクロ
+\def \bun#1#2{\left(\frac{#1}{#2}\right)} %括弧つき分数マクロ
+\def \rot{\nabla \times} %rot
+\def \div{\nabla \cdot} %div
+\def \intt{\int\!\!\!\int} %2重積分
+\def \inttt{\int\!\!\!\int\!\!\!\int} %3重積分
+
+% ページレイアウト
+\setlength{\topmargin}{10mm}
+  \addtolength{\topmargin}{-1in}
+\setlength{\oddsidemargin}{30mm}
+  \addtolength{\oddsidemargin}{-1in}
+\setlength{\textwidth}{150mm}
+\setlength{\textheight}{250mm}
+\setlength{\headsep}{2zw}
+\setlength{\headheight}{2zw}
+\setlength{\topskip}{15mm}
+\linespread{1.0}
+
+% サブセクションを1.,2.にする設定
+\renewcommand{\thesubsection}{\arabic{subsection}.}
+
+% サブサブセクションを(1),(2)にする設定
+\renewcommand{\thesubsubsection}{(\arabic{subsubsection})}
+
+% 大問2の3番目の計算式のラベルを(2.3)にする設定
+% 計算式の参照には\eqref{eq:hoge}を使う
+\makeatletter
+  \renewcommand{\theequation}{\arabic{subsection}.\arabic{equation}}
+  \@addtoreset{equation}{subsection}
+\pagestyle{fancy}
+% ヘッダーの設定
+  \lhead[物理数学　2016.04.18]{\leftmark}
+  \rhead[\leftmark]{物理数学 2016.04.18}
+\renewcommand{\headrulewidth}{0pt}
+\makeatother
+
+
+
+\begin{document}
+
+
+\begin{center}
+\begin{Large}
+演習問題その5 行列式・ヤコビアン
+\end{Large}
+\end{center}
+
+\subsection{}
+次の行列Aの行列式を解け。
+\subsubsection{}
+\begin{equation*}
+A=
+\begin{pmatrix}
+1 &4 &2 &3 \\
+8 &2 &1 &0 \\
+2 &4 &7 &1 \\
+1 &0 &0 &1
+\end{pmatrix}
+\end{equation*}
+
+\vspace{60mm}
+\subsubsection{}
+\begin{equation*}
+A=
+\begin{pmatrix}
+a &0 &3a \\
+ab &2b &3ab \\
+4 &3a^2 &12
+\end{pmatrix}
+\end{equation*}
+
+\newpage
+\subsection{}
+次の行列Aの固有値、固有ベクトルを求めよ。
+\begin{equation*}
+A=
+\begin{pmatrix}
+3 &1 \\
+2 &2
+\end{pmatrix}
+\end{equation*}
+
+\newpage
+\subsection{}
+以下のヤコビアンを求めよ。
+\subsubsection{}
+$$u ~=~ x+y+z,$$
+$$v ~=~ 3x+4y+8z,$$
+$$w ~=~ 2x+2y+z,$$
+$~~~~$のヤコビアン$\partial (u,v,w)/\partial (x,y,z)$.
+
+\newpage
+\subsubsection{$a,b,cを定数とするとき、$}
+$$x~=~u+v+w,$$
+$$y~=~au+bv+cw,$$
+$$z~=~a^2u+b^2v+c^2w,$$
+$~~~~$のヤコビアン$\partial (x,y,z)/\partial (u,v,w)$.
+
+\newpage
+\subsection{}
+円柱座標系$(\rho ,\phi ,z)$、球座標系$(r,\theta ,\phi)$での微小体積$dV$をヤコビアンの計算から求めよ。
+
+\newpage
+\subsection{}
+楕円体$\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=r^2$中の位置ベクトルは、球座標系を用いて
+$$x~=~ar\sin\theta\cos\phi$$
+$$y~=~br\sin\theta\sin\phi$$
+$$z~=~cr\cos\theta$$
+で表される。微小体積を積分することによって、この楕円体の体積を求めよ。\\
+ヒント:積分区間は$0\leq r\leq 1,~0\leq\theta\leq \pi ,~0\leq\phi\leq 2\pi$となる。
+
+
+\end{document}
